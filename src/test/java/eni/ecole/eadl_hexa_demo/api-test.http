@@ -1,0 +1,46 @@
+
+
+
+## Ajout d'un auteur
+POST http://localhost:8080/api/authors
+Content-Type: application/json
+
+{
+  "name": "Martin Fowler",
+  "email": "martin.fowler@eni.fr"
+}
+> {% client.global.set("authorId", response.body.id); %}
+#########
+
+## Ajout d'un livre
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+  "title" : "1984"
+}
+> {% client.global.set("id", response.body.id); %}
+#########
+
+## Affecter un auteur au livre
+POST http://localhost:8080/api/books/{{id}}/authors/{{authorId}}
+Content-Type: application/json
+#########
+
+
+## Emprunt d'un livre
+POST http://localhost:8080/api/books/{{id}}/borrow
+Content-Type: application/json
+
+
+{
+  "email" : "sly@mail.com"
+}
+
+#########
+
+## Retour d'un livre
+POST http://localhost:8080/api/books/{{id}}/return
+Content-Type: application/json
+
+#########
